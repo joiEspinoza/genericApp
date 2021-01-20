@@ -1,0 +1,15 @@
+
+
+.pointer
+{
+    cursor: pointer;
+}
+
+
+.linkR
+{
+    &:hover
+    {
+        border-bottom: 1px solid black;
+    }
+}
