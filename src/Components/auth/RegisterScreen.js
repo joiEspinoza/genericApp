@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { startRegister } from '../../Actions/authActions';
 import { useForm } from '../../Hook/useForm';
 import Swal from 'sweetalert2';
+import { CapitalLetter } from '../../Helper/capitalLetter';
 
 //////<<<<<------------------------------------------------``
 
@@ -19,11 +20,13 @@ const RegisterScreen = () =>
         userName : 'King',
         email : 'king@gmail.com',
         password : '123456',
-        password2 : '123456'
+        password2 : '123456',
+        liked : []
 
+        
     };
     const [ formValues, handleInputChange ] = useForm( initFormValues );
-    const { userName, email, password, password2 } = formValues;
+    let { userName, email, password, password2 } = formValues;
 
     const dispatch = useDispatch();
 
@@ -33,8 +36,13 @@ const RegisterScreen = () =>
 
         if( formValues.password !== formValues.password2 )
         {
-            return Swal.fire( 'error', 'both passwords must be the same', 'error'  )
+            return Swal.fire( '', 'Both passwords must be the same', 'error'  )
         };
+
+        
+        userName = CapitalLetter( userName.trim() );
+        email = email.trim();
+        password = password.trim();
 
         dispatch( startRegister( { userName, email, password } ) );
     };

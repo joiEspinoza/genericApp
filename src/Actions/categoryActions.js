@@ -1,63 +1,28 @@
+import Swal from "sweetalert2";
 import { BackendConnect } from "../Backend/BackendConnect";
-import Swal from 'sweetalert2';
 import { swalMsg } from "../Helper/swalMsg";
 import { types } from "../Type/types";
 
 //////<<<<<------------------------------------------------``
 
-const startRegister = ( newUser ) =>
+
+const startCreateCategory = ( newCategory ) =>
 {
-
-    return async () => 
-    {
-        
-        try 
-        {
-
-            const request = await BackendConnect( 'auth/register', newUser, 'POST' );
-            const response = await request.json();
-
-            if( request.ok )
-            {
-                
-                return Swal.fire( '', 'User created successfully', 'success' );
-                
-            }
-            else
-            {
-
-                return Swal.fire( '', swalMsg( response ) , 'error' );
-
-            };
-
-        } 
-        catch( error ) 
-        {
-
-            console.log( error );
-            return Swal.fire( '', 'Something went wrong', 'error' );
-           
-        };
-
-    };
-    
-};
-
-
-const startLogin = ( userData ) =>
-{
-
     return async ( dispatch ) =>
     {
 
         try 
         {
-            const request = await BackendConnect( 'auth', userData, 'POST' );
+            const request = await BackendConnect( 'category', newCategory, 'POST' );
             const response = await request.json();
 
             if( response.ok )
             {
-                dispatch( login( response.loggedUser ) );
+                Swal.fire( '', 'Category created succefuly', 'success' );
+
+                dispatch( startLoadCategories() );
+                
+                document.getElementById( 'closeModalBtn' ).click();
             }
             else
             {
@@ -65,19 +30,48 @@ const startLogin = ( userData ) =>
             };
 
         } 
-        catch( error )
+        catch( error ) 
+        {
+            console.log( error );
+            return Swal.fire( '', 'Something went wrong', 'error' );
+        }; 
+
+    };
+    
+};
+
+const startLoadCategories = () =>
+{
+
+    return async ( dispatch ) =>
+    {
+        try 
+        {
+
+            const request = await BackendConnect( 'category', {} , 'GET' );
+            const respone = await request.json();
+
+            if( respone.ok )
+            {
+                dispatch( loadingCategories( respone.categories ) );
+            }
+            else
+            {
+                dispatch( loadingCategories( [] ) );
+            };
+
+        } 
+        catch( error ) 
         {
             console.log( error );
             return Swal.fire( '', 'Something went wrong', 'error' );
         };
-
     };
+    
 };
-const login = ( user ) => ( { type : types.authLogin, payload : user } );
-
-
-const logout = () => ( { type : types.authLogout } );
+const loadingCategories = ( categories ) => ( { type : types.categoryLoad, payload : categories } );
 
 //////---------------------------------------------->>>>>
 
-export { startRegister, startLogin, logout };
+
+export { startCreateCategory, startLoadCategories };

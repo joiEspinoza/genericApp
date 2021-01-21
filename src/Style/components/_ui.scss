@@ -1,0 +1,61 @@
+
+.UI__sideBar
+{
+    padding-top: 3rem;
+    height: 100vh;
+    width: 100%;
+    background-color: $primary;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+.UI__iconSideBar
+{
+
+    font-size: 3.5rem;
+
+    &:hover
+    {
+        color: white;
+    }
+
+    p
+    {
+        font-size: 0.7rem;
+    }
+
+}
+
+
+.UI__titleModal
+{
+    margin-left: 9rem;
+}
+
+
+.UI__inputColor
+{
+    padding: 0rem;
+}
+
+
+.card-header
+{
+    background-color: white !important;
+    border-bottom: 1px solid $secondary !important;
+}
+
+
+.fa-egg
+{
+    font-size: 2rem;
+}
+
+.card
+{
+    border: none !important;
+}
+

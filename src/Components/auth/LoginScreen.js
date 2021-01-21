@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { startLogin } from '../../Actions/authActions';
 import { useForm } from '../../Hook/useForm';
 
 //////<<<<<------------------------------------------------``
@@ -10,19 +12,22 @@ const LoginScreen = () =>
 
 ////////////////////// LOGIN //////////////////////
 
-    const initFormValues = { email : "test@gmail.com", password : "123456" }
+    const initFormValues = { email : "king@gmail.com", password : "123456" }
 
     const [ formValues, handleInputChange ] = useForm( initFormValues )
 
     const { email, password } = formValues;
 
+    const dispatch = useDispatch();
+
     const handleLogin = ( event ) =>
     {
         event.preventDefault();
-        console.log( formValues );
+        dispatch( startLogin( formValues ) );
     };
 
 ///////////////////////////////////////////////////////
+
 
 
 ////////////////////// BTN REDIRECT //////////////////////

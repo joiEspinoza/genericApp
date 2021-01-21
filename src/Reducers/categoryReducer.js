@@ -6,20 +6,17 @@ import { types } from "../Type/types";
 
 const initialState = 
 {
-    uid : null,
-    userName : null,
-    liked : [],
-    logged : false,
-    loading : false
+    categories : [],
+    activeCategory : null
 };
 
-const authReducer = ( state = initialState, action ) =>
+const categoryReducer = ( state = initialState, action ) =>
 {
 
     switch ( action.type ) 
     {
 
-        case types.authLogin : return { ...state, uid : action.payload._id, userName : action.payload.userName, logged : true, liked : action.payload.liked };
+        case types.categoryLoad : return { ...state, categories : [ ...action.payload ] };
 
         case types.authLogout : return initialState;
 
@@ -31,4 +28,4 @@ const authReducer = ( state = initialState, action ) =>
 
 //////---------------------------------------------->>>>>
 
-export { authReducer };
+export { categoryReducer };
