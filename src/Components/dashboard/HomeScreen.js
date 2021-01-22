@@ -2,11 +2,11 @@ import React from 'react';
 import CategoryCards from '../UI/CategoryCards';
 import SideBar from '../UI/SideBar';
 
+
 //////<<<<<------------------------------------------------``
 
 const HomeScreen = () => 
 {
-
 
     return (
 
@@ -30,7 +30,7 @@ const HomeScreen = () =>
 
                         <CategoryCards/>
 
-
+                        
                     </div>
 
                 </div>

@@ -44,7 +44,20 @@ const swalMsg = ( response = {} ) =>
 
         return response.errors.userCreatorId.msg;
 
+    }
+    else if( response.errors.postTitle )
+    {
+
+        return response.errors.postTitle.msg;
+
+    }
+    else if( response.errors.postBody )
+    {
+
+        return response.errors.postBody.msg;
+
     };
+
 };
 
 

@@ -6,19 +6,16 @@ import { types } from "../Type/types";
 
 const initialState = 
 {
-    categories : [],
-    activeCategory : null
+    posts : []
 };
 
-const categoryReducer = ( state = initialState, action ) =>
+const postReducer = ( state = initialState, action ) =>
 {
 
     switch ( action.type ) 
     {
 
-        case types.categoryLoad : return { ...state, categories : [ ...action.payload ] };
-
-        case types.categorySetActive : return { ...state, activeCategory : { ...action.payload } }
+        case types.postLoad : return { ...state, posts : [ ...action.payload ] };
 
         case types.authLogout : return initialState;
 
@@ -30,4 +27,4 @@ const categoryReducer = ( state = initialState, action ) =>
 
 //////---------------------------------------------->>>>>
 
-export { categoryReducer };
+export { postReducer };

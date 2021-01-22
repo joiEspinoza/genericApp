@@ -2,6 +2,7 @@
 .UI__sideBar
 {
     padding-top: 3rem;
+    height: 100%;
     height: 100vh;
     width: 100%;
     background-color: $primary;
@@ -42,6 +43,14 @@
 }
 
 
+
+.card
+{
+    border: none !important;
+
+}
+
+
 .card-header
 {
     background-color: white !important;
@@ -49,13 +58,29 @@
 }
 
 
-.fa-egg
+
+.smallName
 {
+    font-size: 0.8rem;
+}
+
+
+.fa-egg 
+{
+    &:hover
+    {
+        small
+        {
+            color: black !important;
+            border-bottom: 1px solid black;
+        }
+
+    }
+
     font-size: 2rem;
 }
 
-.card
-{
-    border: none !important;
-}
+
+
+
 

@@ -8,6 +8,8 @@ const types =
     categoryLoad : '[Category] load',
     categorySetActive : '[Category] set active',
 
+    postLoad : '[POST] load',
+
 };
 
 //////---------------------------------------------->>>>>

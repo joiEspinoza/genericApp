@@ -8,6 +8,8 @@ import PrivateRoute from '../Router/PrivateRoute'
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../Components/UI/NavBar";
 import { startLoadCategories } from "../Actions/categoryActions";
+import CategoryScreen from "../Components/dashboard/CategoryScreen";
+import { starLoadPosts } from "../Actions/postActions";
 
 
 //////<<<<<------------------------------------------------``
@@ -28,7 +30,8 @@ const RouterApp = () =>
       if( logged )
       {
 
-        dispatch( startLoadCategories() )
+        dispatch( startLoadCategories() );
+        dispatch( starLoadPosts() );
 
       };
       
@@ -51,6 +54,8 @@ const RouterApp = () =>
                     <PublicRoute exact path="/register" component={ RegisterScreen } isLoggedIn={ logged } />
 
                     <PrivateRoute exact path="/" component={ HomeScreen } isLoggedIn={ logged } />
+
+                    <PrivateRoute exact path="/category" component={ CategoryScreen } isLoggedIn={ logged } />
 
                     <Redirect to="/login" />
 

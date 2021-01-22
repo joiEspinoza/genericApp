@@ -6,23 +6,22 @@ import { types } from "../Type/types";
 //////<<<<<------------------------------------------------``
 
 
-const startCreateCategory = ( newCategory ) =>
+const startCreatePost = ( newPost ) =>
 {
     return async ( dispatch ) =>
     {
 
         try 
         {
-            const request = await BackendConnect( 'category', newCategory, 'POST' );
+            const request = await BackendConnect( 'post', newPost, 'POST' );
             const response = await request.json();
 
             if( response.ok )
             {
-                Swal.fire( '', 'Category created succefuly', 'success' );
+                Swal.fire( '', 'Post created succefuly', 'success' );
 
-                dispatch( startLoadCategories() );
-                
-                document.getElementById( 'closeModalBtn' ).click();
+                dispatch( starLoadPosts() );
+
             }
             else
             {
@@ -40,43 +39,39 @@ const startCreateCategory = ( newCategory ) =>
     
 };
 
-const startLoadCategories = () =>
+const starLoadPosts = () =>
 {
-
     return async ( dispatch ) =>
     {
-        try 
+
+        try
         {
 
-            const request = await BackendConnect( 'category', {} , 'GET' );
-            const respone = await request.json();
+            const request = await BackendConnect( 'post', {}, 'GET' );
+            const response = await request.json();
 
-            if( respone.ok )
+            if( response.ok )
             {
-                dispatch( loadingCategories( respone.categories ) );
+                dispatch( loadPost( response.posts ) );
             }
             else
             {
-                dispatch( loadingCategories( [] ) );
+                dispatch( loadPost( [] ) );
             };
-
+            
         } 
         catch( error ) 
         {
             console.log( error );
             return Swal.fire( '', 'Something went wrong', 'error' );
         };
+
     };
-    
 };
-const loadingCategories = ( categories ) => ( { type : types.categoryLoad, payload : categories } );
-
-
-const loadActiveCategory = ( category ) => ( { type : types.categorySetActive, payload : category } )
-
+const loadPost = ( posts ) => ( { type : types.postLoad, payload : posts } )
 
 
 //////---------------------------------------------->>>>>
 
 
-export { startCreateCategory, startLoadCategories, loadActiveCategory };
+export { startCreatePost, starLoadPosts };
